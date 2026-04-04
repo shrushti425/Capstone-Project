@@ -1,0 +1,7 @@
+chroma_db/
+venv/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+get-pip.py

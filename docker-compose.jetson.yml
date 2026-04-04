@@ -1,0 +1,20 @@
+services:
+  rag-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.jetson
+    container_name: rag-pipeline-jetson
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./models:/app/models
+      - chroma_data:/app/chroma_db
+    environment:
+      - USE_LLAMACPP=true
+      - MODEL_PATH=/app/models/gemma2-2b.Q4_K_M.gguf
+      - N_GPU_LAYERS=20
+    runtime: nvidia
+    restart: unless-stopped
+
+volumes:
+  chroma_data:
